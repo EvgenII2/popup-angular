@@ -1,1 +1,7 @@
-<p>images works!</p>
+<div class="images-container">
+    <ng-container *ngFor="let image of images">
+        <app-image [image]="image"
+                   (onClickEvent)="onImageClick($event)">
+        </app-image>
+    </ng-container>
+</div>

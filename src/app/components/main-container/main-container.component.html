@@ -1,1 +1,12 @@
-<p>main-container works!</p>
+<div class="main">
+    <button class="button-load"
+            (click)="loadImage()">Загрузить картинки</button>
+    <app-images [images]="images"
+                (onImageClickEvent)="setCurrentImage($event)">
+    </app-images>
+    <app-popup [image]="currentImage"
+               (closePopup)="setCurrentImage($event)">
+    </app-popup>
+    <app-loader [isLoading]="isLoading">
+    </app-loader>
+</div>
