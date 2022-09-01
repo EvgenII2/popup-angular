@@ -1,1 +1,23 @@
-<p>popup works!</p>
+<div *ngIf="image"
+     class="popup">
+    <button class="popup__button-close"
+            (click)="onClick($event)">
+        &times;
+    </button>
+    <div class="popup__content">
+        <figure class="popup__image-container">
+            <img class="popup__image"
+                 src={{image.download_url}}
+                 alt={{image.author}} />
+            <figcaption class="popup__caption">
+                Автор: <address class="popup__author">{{ image.author }}</address>
+            </figcaption>
+        </figure>
+        <a class="popup__link popup__link_open"
+           href={{image.url}}
+           rel="noreferrer"
+           target="_blank">
+            Открыть в полном размере
+        </a>
+    </div>
+</div>
