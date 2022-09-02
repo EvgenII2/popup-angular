@@ -1,7 +1,7 @@
-<a href={{image.url}}
+<a href={{image?.url}}
    class="image-card__link"
    (click)="onClick($event)">
-    <img class="image-card__image"
-         src={{getURL(image.download_url,5)}}
-         alt={{image.author}} />
+   <img class="image-card__image"
+        src={{getURL(image?.download_url,5)}}
+        alt={{image?.author}} />
 </a>

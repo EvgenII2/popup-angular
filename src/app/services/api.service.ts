@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
+import { IImageInfo } from '../models/models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  constructor() {}
+  constructor(){}
 
-  _checkResponse(res: any) {
+  private checkResponse<T>(res: any): Promise<T> {
     if (res.ok) {
       return res.json();
     }
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
-  getPictures = (page = 1, limit = 10) => {
+  getPictures(page: number = 1, limit: number = 10): Promise<IImageInfo[]> {
     return fetch(`https://picsum.photos/v2/list?page=${page};limit=${limit}`, {
       headers: new Headers({
         'Access-Control-Allow-Credentials': 'true',
@@ -23,17 +24,17 @@ export class ApiService {
         'Content-Type': 'text/html',
       }),
     }).then((response) => {
-      return this._checkResponse(response);
+      return this.checkResponse(response);
     });
-  };
+  }
 
-  getPictureInfo = (id = 0) => {
+  getPictureInfo(id: number = 0): Promise<IImageInfo> {
     return fetch(`https://picsum.photos/id/${id}/info`).then((response) => {
-      return this._checkResponse(response);
+      return this.checkResponse(response);
     });
-  };
+  }
 
-  getCropImage(src: string, size = 2) {
+  getCropImage(src: string, size: number = 2): string {
     const [domain, key, id, width, height] = src.split('/').splice(2);
     const newWidth = Math.floor(+width / size);
     const newHeight = Math.floor(+height / size);

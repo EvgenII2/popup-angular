@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { IImageInfo } from 'src/app/models/models';
 
 @Component({
   selector: 'app-images',
@@ -6,16 +7,15 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./images.component.scss'],
 })
 export class ImagesComponent implements OnInit {
-  @Input() images: any[] | undefined;
-  @Output() onImageClickEvent: EventEmitter<any> = new EventEmitter<any>();
+  @Input() images: IImageInfo[] | undefined;
+  @Output() onImageClickEmitter: EventEmitter<IImageInfo> =
+    new EventEmitter<IImageInfo>();
 
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.images);
-  }
+  ngOnInit(): void {}
 
-  onImageClick(ev: any) {
-    this.onImageClickEvent.emit(ev);
+  onImageClick(image: IImageInfo): void {
+    this.onImageClickEmitter.emit(image);
   }
 }

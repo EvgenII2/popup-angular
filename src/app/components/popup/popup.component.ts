@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { IImageInfo } from 'src/app/models/models';
 
 @Component({
   selector: 'app-popup',
@@ -6,15 +7,14 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./popup.component.scss'],
 })
 export class PopupComponent implements OnInit {
-  @Input() image: any | undefined;
-  @Output() closePopup: EventEmitter<any> = new EventEmitter<any>();
+  @Input() image: IImageInfo | undefined;
+  @Output() closePopup: EventEmitter<undefined> = new EventEmitter<undefined>();
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  onClick(ev: any) {
-    console.log(ev);
-    this.closePopup.emit(null);
+  onClick(ev: Event) {
+    this.closePopup.emit(undefined);
   }
 }

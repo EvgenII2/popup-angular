@@ -2,7 +2,7 @@
     <button class="button-load"
             (click)="loadImage()">Загрузить картинки</button>
     <app-images [images]="images"
-                (onImageClickEvent)="setCurrentImage($event)">
+                (onImageClickEmitter)="setCurrentImage($event)">
     </app-images>
     <app-popup [image]="currentImage"
                (closePopup)="setCurrentImage($event)">
